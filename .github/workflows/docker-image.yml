@@ -19,4 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: cd bulletin-board-app && docker build . --file Dockerfile --tag node-bulletin-board:$(date +%s)
+      run: cd bulletin-board-app && docker build . --file Dockerfile --tag node-bulletin-board:${{ github.sha }}
+    - name: Run Docker Image
+    - run: docker run -d node-bulletin-board:${{ github.sha }}
+
