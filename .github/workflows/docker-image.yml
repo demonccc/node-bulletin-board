@@ -20,6 +20,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: cd bulletin-board-app && docker build . --file Dockerfile --tag node-bulletin-board:${{ github.sha }}
-    - name: Run Docker Image
-      run: docker run -d -p 8080:8080 node-bulletin-board:${{ github.sha }}
+    - name: Stop Docker Container
+      run: docker stop node-bulletin-board || echo "No hay un contenedor corriendo"
+    - name: Run Docker Container
+      run: docker run -d -p 8080:8080 --name node-bulletin-board node-bulletin-board:${{ github.sha }}
 
