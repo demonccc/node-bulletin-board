@@ -7,7 +7,7 @@ module.exports = [
     },
     {
       id: 2,
-      title: 'WinOps #17',
+      title: 'GitHub Actions',
       detail: 'WinOps London',
       date: '2017-11-21'
     },
