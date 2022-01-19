@@ -8,7 +8,7 @@ module.exports = [
     {
       id: 2,
       title: 'GitHub Actions',
-      detail: 'WinOps London',
+      detail: 'Argentina',
       date: '2017-11-21'
     },
     {
