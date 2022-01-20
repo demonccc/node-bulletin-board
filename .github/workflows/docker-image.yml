@@ -2,17 +2,29 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+    - feature* 
+    - bugfix*
   pull_request:
-    branches: [ master ]
-
+    branches: 
+    - master
+    - development
+    
 jobs:
 
-  build:
-
+  build-docker:
     runs-on: self-hosted
-
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: cd bulletin-board-app && docker build . --file Dockerfile --tag node-bulletin-board:$(date +%s)
+      run: cd bulletin-board-app && docker build . --file Dockerfile --tag node-bulletin-board:${{ github.sha }}
+     
+  run-docker:
+    runs-on: self-hosted
+    steps:
+    - name: Stop Docker Container
+      run: docker stop node-bulletin-board || echo "No hay un contenedor corriendo"
+    - name: Delete Docker Container
+      run: docker rm node-bulletin-board || echo "No hay contenedor para borrar"
+    - name: Run Docker Container
+      run: docker run -d -p 8080:8080 --name node-bulletin-board node-bulletin-board:${{ github.sha }}
