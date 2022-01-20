@@ -7,13 +7,13 @@ module.exports = [
     },
     {
       id: 2,
-      title: 'WinOps #17',
-      detail: 'WinOps London',
+      title: 'GitHub Actions',
+      detail: 'Argentina',
       date: '2017-11-21'
     },
     {
       id: 3,
-      title: 'Docker London',
+      title: 'Docker Argentina',
       date: '2017-11-13'
     }
   ];
